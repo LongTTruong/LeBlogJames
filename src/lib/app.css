@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family : "DEC Terminal Modern";
+    src: url('/static/fonts/_decterm.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: "DEC Terminal Modern", monospace;
+    font-size: 16px;
+    line-height: 1.25;
+}
