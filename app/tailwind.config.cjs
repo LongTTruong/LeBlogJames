@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{html,jss,svelte,ts}",
+    ".src/studio/**/*.{html,jss,svelte,ts}",
   ],
   theme: {
     fontFamily: {
