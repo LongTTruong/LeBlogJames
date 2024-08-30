@@ -10,6 +10,4 @@ This project is just a little something that I started to:
 
 If I'm still kicking about, which I'll presume is the case, you can send me an email at longtruong31@gmail.com or add me on Discord at "dobloys"
 
-```
 I'm always open to chat about anything, so don't be shy!
-```

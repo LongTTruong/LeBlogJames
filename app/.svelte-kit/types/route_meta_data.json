@@ -2,6 +2,9 @@
 	"/": [
 		"src/routes/+page.js"
 	],
+	"/api/more-posts": [
+		"src/routes/api/more-posts/+server.js"
+	],
 	"/blog": [
 		"src/routes/blog/+page.server.js"
 	],

@@ -14,7 +14,7 @@
 
 <slot></slot>
 
-<footer class = "p-4">
+    <footer class = "p-4">
     <div class="container mx-auto text-center">
         <p>© 2000 This guy stinks</p>
     </div>
