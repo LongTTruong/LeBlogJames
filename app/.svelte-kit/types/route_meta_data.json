@@ -10,5 +10,8 @@
 	],
 	"/design": [
 		"src/routes/design/+page.js"
+	],
+	"/portfolio": [
+		"src/routes/portfolio/+page.js"
 	]
 }

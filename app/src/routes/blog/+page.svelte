@@ -21,6 +21,7 @@
 
         if (newPosts && newPosts.post) {
             posts = {...posts,...newPosts};
+            offset += 3;
         } else {
             console.error("It's over...", newPosts);
         }
