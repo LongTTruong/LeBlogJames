@@ -1,6 +1,6 @@
 <script>
     import "../lib/app.css";
-    import Scanline from '$lib/Scanline.svelte'
+    import Overlay from '$lib/Overlay.svelte'
     import { onMount } from 'svelte';
 
     let scanlineProps = [];
@@ -10,20 +10,16 @@
     function updateScanlines() {
         const lineOpacity = Math.random() * 0.05 + 0.01; // Controlled random opacity for a subtle effect
         // Update properties for the current scanline
-        scanlineProps[lineIndex] = { lineOpacity };
-
+        scanlineProps[lineIndex] = { lineOpacity }
         // Move to the next line section
         lineIndex = (lineIndex + 1) % totalLines;
     }
 
-
   onMount(() => {
     //Initialize lol
-    scanlineProps = Array(totalLines).fill({lineOpacity: 0.05});
-
+    scanlineProps = Array.from({ length: totalLines }, () => ({ lineOpacity: 0.05 }));
     // Update scanlines on mount and periodically
-    updateScanlines();
-    const interval = setInterval(updateScanlines, 200); // 
+    const interval = setInterval(updateScanlines, 60); // 
     return () => clearInterval(interval);
   });
 
@@ -31,26 +27,28 @@
 
 <!-- applies the vignette and scan line effect -->
 {#each Array(totalLines) as _, i}
-    <Scanline
-        index = {i}
-        lineOpacity = {scanlineProps[i]?.lineOpacity || 0.05}
+    <Overlay
+    index={i}
+    lineOpacity={scanlineProps[i]?.lineOpacity || 0.05}
     />
 {/each}
 
 <!-- nav bar -->
-<nav class = "p-4">
-    <div class ="container mx-auto flex justify-between items-center">
-        <a href="/" class="hover:bg-brown px-3 py-2 rounded">Busting nuts</a>
-        <div class="space-x-4">
-            <a href="/design" class="hover:bg-brown px-3 py-2 rounded">Design</a>
-            <a href="/blog" class ="hover:bg-brown px-3 py-2 rounded">Prose</a>
-            <a href="/portfolio" class ="hover:bg-brown px-3 py-2 rounded">Portfolio</a>
-        </div>
-    </div>
-</nav>
+ <header class="fixed top-0 left-0 w-full h-16">
+     <nav class = "p-4">
+         <div class ="container mx-auto flex justify-between items-center">
+             <a href="/" class="hover:bg-brown px-3 py-2 rounded">Busting nuts</a>
+             <div class="space-x-4">
+                 <a href="/design" class="hover:bg-brown px-3 py-2 rounded">Design</a>
+                 <a href="/blog" class ="hover:bg-brown px-3 py-2 rounded">Prose</a>
+                 <a href="/portfolio" class ="hover:bg-brown px-3 py-2 rounded">Portfolio</a>
+             </div>
+         </div>
+     </nav>
+ </header>
 
 <!-- Route content -->
-<main>
+<main class="pt-16">
     <slot></slot>
 </main>
 

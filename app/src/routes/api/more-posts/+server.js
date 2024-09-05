@@ -9,8 +9,7 @@ export async function GET({ params, url }) {
     const limit = 3;
     const thugshake = `[${offset}...${offset + limit}]`;
 
-    const posts = await getPosts({params: `*[_type == "post"] | order(_createdAt asc) ${thugshake}`});
-
+    const posts = await getPosts({params: `*[_type == "post"] | order(_createdAt desc) ${thugshake}`});
     console.log(`*[_type == "post"] | order(_createdAt desc) ${thugshake}`);
 
     return json(posts);
