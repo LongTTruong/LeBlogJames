@@ -51,7 +51,6 @@ declare module '$env/static/private' {
 	export const USER: string;
 	export const LS_COLORS: string;
 	export const npm_package_scripts_check_watch: string;
-	export const GREP_COLORS: string;
 	export const PNPM_SCRIPT_SRC_DIR: string;
 	export const SSH_AUTH_SOCK: string;
 	export const __CF_USER_TEXT_ENCODING: string;
@@ -154,7 +153,6 @@ declare module '$env/dynamic/private' {
 		USER: string;
 		LS_COLORS: string;
 		npm_package_scripts_check_watch: string;
-		GREP_COLORS: string;
 		PNPM_SCRIPT_SRC_DIR: string;
 		SSH_AUTH_SOCK: string;
 		__CF_USER_TEXT_ENCODING: string;

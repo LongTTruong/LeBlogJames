@@ -8,14 +8,8 @@
         0deg,
         rgba(0, 0, 0, ${lineOpacity}),
         rgba(0, 0, 0, ${lineOpacity}) ${lineSpacing}px,
-        rgba(0, 0, 0, ${lineOpacity * 2}) ${lineSpacing}px,
-        rgba(0, 0, 0, ${lineOpacity * 2}) ${lineSpacing * 2}px
-      ),
-        radial-gradient(
-        circle farthest-corner,  
-        rgba(0, 0, 0, 0) 75%,
-        rgba(0, 0, 0, 0.01),
-        rgba(0, 0, 0, 0.05) 100%
+        rgba(0, 0, 0, ${lineOpacity * 1.5}) ${lineSpacing}px,
+        rgba(0, 0, 0, ${lineOpacity * 1.5}) ${lineSpacing * 2}px
       )
     `;
   </script>

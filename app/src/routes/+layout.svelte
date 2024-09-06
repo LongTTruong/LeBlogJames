@@ -4,28 +4,68 @@
     import { onMount } from 'svelte';
 
     let scanlineProps = [];
-    const totalLines = 10;
     let lineIndex = 0;
-
+    const totalLines = 10;
+    
+    // this function throttles any function for performance reasons lol
+    function throttle(fn, limit) {
+        let lastFunc;
+        let lastRan;
+        return function(...args) {
+            if (!lastRan) {
+                fn(...args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(lastFunc);
+                lastFunc = setTimeout(() => {
+                    if ((Date.now() - lastRan) >= limit) {
+                        fn(...args);
+                        lastRan = Date.now();
+                    }
+                }, limit - (Date.now() - lastRan));
+            }
+        };
+        
+    }
+    // Essentially, makes the scanlines flicker by "section". 
+    // Kind of resource intensive, especially bc we update every 60 ms,
+    // so i might work out a better optimization later.
     function updateScanlines() {
-        const lineOpacity = Math.random() * 0.05 + 0.01; // Controlled random opacity for a subtle effect
+        const lineOpacity = Math.random() * 0.02 + 0.01; // Controlled random opacity for a subtle effect
         // Update properties for the current scanline
         scanlineProps[lineIndex] = { lineOpacity }
         // Move to the next line section
         lineIndex = (lineIndex + 1) % totalLines;
     }
+    
+    onMount(() => {
+        //gets the mouse coords from client & updates the vignetteoverlay's css vars
+        const updateVignettePosition = (e) => {
+            let mouseX = e.clientX;
+            let mouseY = e.clientY;
+            const vignetteOverlay = document.querySelector('.vignette-overlay');
+            
+            vignetteOverlay.style.setProperty('--mouse-x', `${mouseX}px`);
+            vignetteOverlay.style.setProperty('--mouse-y', `${mouseY}px`);
+    };
 
-  onMount(() => {
-    //Initialize lol
+    const throttledUpdate = throttle(updateVignettePosition, 117);
+    // initializes the scanlines so that it doesn't begin undefined
     scanlineProps = Array.from({ length: totalLines }, () => ({ lineOpacity: 0.05 }));
-    // Update scanlines on mount and periodically
-    const interval = setInterval(updateScanlines, 60); // 
-    return () => clearInterval(interval);
+    window.addEventListener('mousemove', throttledUpdate);
+    const interval = setInterval(updateScanlines, 117); // 
+    
+    return () => {
+        clearInterval(interval);
+        window.removeEventListener('mousemove', updateVignettePosition)
+    }
+
   });
 
 </script>
 
 <!-- applies the vignette and scan line effect -->
+<div class ="fixed inset-0 pointer-events-none z-50 vignette-overlay"></div>
 {#each Array(totalLines) as _, i}
     <Overlay
     index={i}
