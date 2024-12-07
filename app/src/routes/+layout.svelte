@@ -1,6 +1,7 @@
 <script>
     import "../lib/app.css";
-    import Overlay from '$lib/Overlay.svelte'
+    import Overlay from '$lib/components/Overlay.svelte';
+    import ThreeCanvas from '$lib/components/ThreeCanvas.svelte';
     import { onMount } from 'svelte';
 
     let scanlineProps = [];
@@ -64,14 +65,20 @@
 
 </script>
 
-<!-- applies the vignette and scan line effect -->
-<div class ="fixed inset-0 pointer-events-none z-50 vignette-overlay"></div>
-{#each Array(totalLines) as _, i}
-    <Overlay
-    index={i}
-    lineOpacity={scanlineProps[i]?.lineOpacity || 0.05}
-    />
-{/each}
+
+    <!-- applies the vignette and scan line effect -->
+    <div class ="fixed inset-0 pointer-events-none z-50 vignette-overlay"></div>
+    {#each Array(totalLines) as _, i}
+        <Overlay
+        index={i}
+        lineOpacity={scanlineProps[i]?.lineOpacity || 0.05}
+        />
+    {/each}
+
+    <div class="relative inset-0">
+        <ThreeCanvas/>
+    </div>
+
 
 <!-- nav bar -->
  <header class="fixed top-0 left-0 w-full h-16">
