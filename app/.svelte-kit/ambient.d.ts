@@ -68,7 +68,6 @@ declare module '$env/static/private' {
 	export const HOME: string;
 	export const SHLVL: string;
 	export const HOMEBREW_PREFIX: string;
-	export const VCS_PROMPT: string;
 	export const LOGNAME: string;
 	export const LESS: string;
 	export const npm_config_cache: string;
@@ -152,7 +151,6 @@ declare module '$env/dynamic/private' {
 		HOME: string;
 		SHLVL: string;
 		HOMEBREW_PREFIX: string;
-		VCS_PROMPT: string;
 		LOGNAME: string;
 		LESS: string;
 		npm_config_cache: string;

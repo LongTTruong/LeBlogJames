@@ -1,7 +1,7 @@
 <script>
-    import ThreeCanvas from "$lib/components/ThreeCanvas.svelte";
+    import MainScene from "$lib/components/ThreeJS/scenes/MainScene.svelte";
 </script>
 
 <main>
-    <ThreeCanvas/>
+    <MainScene/>
 </main>

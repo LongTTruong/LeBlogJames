@@ -1,35 +1,33 @@
 <script>
     import { onMount } from 'svelte';
     import * as THREE from 'three';
+    import { DynamicGrid } from '../geometry/DynamicGrid.js';
     
     let canvas;
-  
+
     onMount(() => {
       // Scene, camera, and renderer setup
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
       const renderer = new THREE.WebGLRenderer({ canvas, alpha:true });
       renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const material = new THREE.LineBasicMaterial ({ color: 0x000000 });
-      const gridSize = 100;
-      const points = [];
-      for (let i = -gridSize;i<=gridSize;i+=1) {
-        points.push( new THREE.Vector3())
-        points.push( new THREE.Vector3())
-        points.push( new THREE.Vector3())
-      }
+      camera.position.set(0, 0, 10); // Move the camera closer
+      camera.lookAt(0, 0, 0); // Look at the center of the scene
 
-      console.log(points);
-      const geometry = new THREE.BufferGeometry().setFromPoints( points );
-      const line = new THREE.LineSegments( geometry, material );
-      scene.add(line);
-      
-      
-      camera.position.set(0,0,100);
-      camera.lookAt(0,0,0); 
+      const grid = new DynamicGrid(100);
+      grid.addToScene(scene);
+
       renderer.render( scene, camera);
 
+      const clock = new THREE.Clock();
+
+      function animate() {
+        const delta = clock.getDelta();
+        grid.update(delta);
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
 
       // Handle window resize
       window.addEventListener('resize', () => {
@@ -40,11 +38,8 @@
         camera.updateProjectionMatrix();
       });
 
-      // window.addEventListener('mousemove', (e) => {
-      //   let mouseX = e.clientX/innerWidth;
-      //   let mouseY = e.clientY/innerHeight;
-      // });
-      
+      animate();
+
     });
   </script>
   
