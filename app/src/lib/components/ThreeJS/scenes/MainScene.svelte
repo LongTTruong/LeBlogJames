@@ -1,7 +1,8 @@
 <script>
     import { onMount } from 'svelte';
     import * as THREE from 'three';
-    import { DynamicGrid } from '../geometry/DynamicGrid.js';
+    import { singleLine, box } from '../geometry/testCanvas.js';
+
     
     let canvas;
 
@@ -15,16 +16,22 @@
       camera.position.set(0, 0, 10); // Move the camera closer
       camera.lookAt(0, 0, 0); // Look at the center of the scene
 
-      const grid = new DynamicGrid(100);
-      grid.addToScene(scene);
-
+      // const grid = new DynamicGrid(100);
+      // grid.addToScene(scene);
+      let lineArray = [];
+      for (let i = 0; i < 10; i++) {
+        lineArray.push(new singleLine(i));
+        lineArray[i].addToScene(scene);
+      }
       renderer.render( scene, camera);
 
       const clock = new THREE.Clock();
 
       function animate() {
         const delta = clock.getDelta();
-        grid.update(delta);
+        lineArray.forEach(element => {
+          element.update(delta);
+        });
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       }
