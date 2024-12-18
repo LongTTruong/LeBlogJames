@@ -1,7 +1,7 @@
 <script>
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
+    import { movingLine, stationaryLines } from '../geometry/testCanvas.js';
     import * as THREE from 'three';
-    import { singleLine, box } from '../geometry/testCanvas.js';
 
     
     let canvas;
@@ -16,20 +16,29 @@
       camera.position.set(0, 0, 10); // Move the camera closer
       camera.lookAt(0, 0, 0); // Look at the center of the scene
 
-      // const grid = new DynamicGrid(100);
-      // grid.addToScene(scene);
-      let lineArray = [];
-      for (let i = 0; i < 10; i++) {
-        lineArray.push(new singleLine(i));
-        lineArray[i].addToScene(scene);
-      }
+      // schema for creating and inserting lines; not elegant right now, def rewriting later
+      let horLineArray = [];
+      horLineArray.push(new movingLine(0,0));
+      horLineArray.push(new movingLine(0.0625,0.125));
+      horLineArray.push(new movingLine(0.125,0.25));
+      horLineArray.push(new movingLine(0.25,0.5));
+      horLineArray.push(new movingLine(0.5,1));
+      horLineArray.push(new movingLine(1,2));
+      horLineArray.push(new movingLine(2,4));
+      horLineArray.forEach(element => {
+        element.addToScene(scene);
+      });
+    
+      const vertLines = new stationaryLines(1);
+      vertLines.addToScene(scene);
+
       renderer.render( scene, camera);
 
       const clock = new THREE.Clock();
 
       function animate() {
         const delta = clock.getDelta();
-        lineArray.forEach(element => {
+        horLineArray.forEach(element => {
           element.update(delta);
         });
         renderer.render(scene, camera);
@@ -47,6 +56,9 @@
 
       animate();
 
+      return() => {
+        cancelAnimationFrame(animate);
+      }
     });
   </script>
   
