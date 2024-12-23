@@ -16,15 +16,20 @@
       camera.position.set(0, 0, 10); // Move the camera closer
       camera.lookAt(0, 0, 0); // Look at the center of the scene
 
+
       // schema for creating and inserting lines; not elegant right now, def rewriting later
+            /* 
+            horLineArray.push(new movingLine(2,4));
+            horLineArray.forEach(element => {
+              element.addToScene(scene);
+            */
+  
       let horLineArray = [];
       horLineArray.push(new movingLine(0,0));
-      horLineArray.push(new movingLine(0.0625,0.125));
-      horLineArray.push(new movingLine(0.125,0.25));
-      horLineArray.push(new movingLine(0.25,0.5));
-      horLineArray.push(new movingLine(0.5,1));
-      horLineArray.push(new movingLine(1,2));
-      horLineArray.push(new movingLine(2,4));
+      for (let i = 0; i < 8; i++ ) {
+        //nice!
+        horLineArray.push(new movingLine(2*Math.pow(0.5, i), 4*Math.pow(0.5,i)));
+      }
       horLineArray.forEach(element => {
         element.addToScene(scene);
       });
