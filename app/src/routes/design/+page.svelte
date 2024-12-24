@@ -1,12 +1,20 @@
 <script>
-	import TerminalOverlay from "$lib/components/TerminalOverlay.svelte";
-    import MainScene from "$lib/components/ThreeJS/scenes/MainScene.svelte";
+	import WindowManager from "$lib/components/WindowManager.svelte";
+    import { addWindow } from '$lib/stores/windowStore.js';
+
+    function openWindow() {
+        addWindow({
+            id: 'unique-id',
+            type: 'test',
+            top: '100px',
+            left: '100px',
+            props: { content: 'Hello World!' },
+        });
+    }
+
 </script>
 
 <main>
-    {#each Array(10) as _,i}
-        <TerminalOverlay index={i}/>
-    {/each}
-    <MainScene/>
-    
+    <WindowManager/>
+    <button on:click={openWindow}>Open Window</button>
 </main>

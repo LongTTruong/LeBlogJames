@@ -2,6 +2,7 @@
     import "../lib/app.css";
     import TerminalOverlay from '$lib/components/TerminalOverlay.svelte';
     import MainScene from '$lib/components/ThreeJS/scenes/MainScene.svelte';
+	import WindowManager from "$lib/components/WindowManager.svelte";
     import { onMount } from 'svelte';
 
 </script>
@@ -23,7 +24,8 @@
 
 <!-- Route content -->
 <main class="pt-16">
-    <slot></slot>
+    <slot />
+    <MainScene/>
 </main>
 
 <!-- Final footer -->

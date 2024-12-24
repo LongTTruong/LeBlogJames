@@ -38,7 +38,7 @@ export class movingLine {
 
 }
 
-export class stationaryLines {
+export class allStationaryLines {
     //this shit looks like garbage; one day i will refactor lol
     constructor(spacing = 1,lineLength = 10, vanishingPoint = new THREE.Vector3(0,10,-250)) {
 

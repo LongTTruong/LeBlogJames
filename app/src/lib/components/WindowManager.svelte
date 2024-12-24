@@ -1,9 +1,11 @@
 <script>
     import { get } from 'svelte/store';
-    import { windowStore } from '../stores/windowStore';
-    import { Window } from './Window.svelte';
+    import  Window  from './Window.svelte';
+	import { onDestroy } from 'svelte';
+    import { windowStore, addWindow, closeWindow } from '../stores/windowStore.js';
 
-    const windows = get(windowStore);
+    $: windows = $windowStore;
+
 </script>
 
 <div class="window-manager">
