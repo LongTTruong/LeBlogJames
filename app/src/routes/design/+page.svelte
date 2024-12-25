@@ -2,13 +2,13 @@
 	import WindowManager from "$lib/components/WindowManager.svelte";
     import { addWindow } from '$lib/stores/windowStore.js';
 
-    function openWindow() {
+    function openWindow(type) {
         addWindow({
-            id: 'unique-id',
-            type: 'test',
+            id: 'unique-id-' + type,
+            type: type,
             top: '100px',
             left: '100px',
-            props: { content: 'Hello World!' },
+            props: { content: `This is a ${type} window!` },
         });
     }
 
@@ -16,5 +16,6 @@
 
 <main>
     <WindowManager/>
-    <button on:click={openWindow}>Open Window</button>
+    <button on:click={() => openWindow('test1')}>Open test1</button>
+    <button on:click={() => openWindow('test2')}>Open test2</button>
 </main>
