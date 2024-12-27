@@ -1,4 +1,6 @@
 <script>
+    import { closeWindow } from '$lib/stores/windowStore.js'
+	import TerminalOverlay from './TerminalOverlay.svelte';
     export let win;
 
     let Content;
@@ -9,16 +11,17 @@
             });
         }
     }
+
 </script>
 
 <div class="window" style="top: {win.top}; left: {win.left}">
     <header>
         <h2>{win.title}</h2>
-        <button on:click={win.close}>X</button>
+        <button class ='hover:bg-brown' on:click={closeWindow(win.id)}>X</button>
     </header>
     <main>
         {#if Content}
-            <svelte:component this={Content} {...win.props} />
+        <svelte:component this={Content} {...win.props} />
         {/if}
     </main>
 </div>

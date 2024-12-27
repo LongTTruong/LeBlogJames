@@ -72,7 +72,7 @@
   
   <style>
     .freaky-overlay {
-      position: fixed;
+      position: relative;
       height: 100%;
       width: 100%;
       background-attachment: scroll;

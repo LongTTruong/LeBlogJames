@@ -79,7 +79,8 @@
   
   <style>
     canvas {
-        position: fixed;
+        position: absolute;
+        z-index: -1;
         height: 100%;
         width: 100%;
         background-attachment: scroll;

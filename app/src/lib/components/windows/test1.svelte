@@ -15,14 +15,14 @@
 
 <style>
     .type-a-window {
-        border: 2px solid #3498db;
+        border: 2px solid red;
         border-radius: 8px;
         background-color: #f0f8ff;
         padding: 1rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .type-a-window header {
-        background-color: #3498db;
+        background-color: red;
         color: white;
         padding: 0.5rem;
         border-radius: 6px 6px 0 0;
