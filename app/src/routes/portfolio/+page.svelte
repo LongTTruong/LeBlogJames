@@ -1,5 +1,2 @@
-<body>
-    <div>
-        hi
-    </div>
-</body>
+<main>
+</main>

@@ -55,7 +55,8 @@
 
 </script>
 
-<body>
+
+<main>
     <div class= "flex-row p-0.5 space-y-6">
         {#if posts && posts.post}
         {#each posts.post as post}
@@ -69,4 +70,4 @@
         {/if}
     </div>
     <div id="load-more-trigger" style="height: 1px;"></div>
-</body>
+</main>

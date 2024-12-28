@@ -79,11 +79,10 @@
   
   <style>
     canvas {
-        position: absolute;
+        position: fixed;
         z-index: -1;
-        height: 100%;
-        width: 100%;
-        background-attachment: scroll;
+        height: 100vw;
+        width: 100vw;
         background-repeat: no-repeat;
         background-position: center;
         pointer-events: none;
