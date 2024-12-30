@@ -8,6 +8,7 @@
 
 </script>
 
+<!-- this component will also handle routing logic. -->
 <div class="window-manager">
     {#each windows as win (win.id)}
     <Window {win}/>

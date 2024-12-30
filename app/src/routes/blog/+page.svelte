@@ -4,7 +4,6 @@
     export let data;
     import { onMount } from 'svelte';
     
-    let posts = data;
     let loading = false;
     let offset = 2;
 
@@ -20,7 +19,7 @@
         const newPosts = await response.json();
 
         if (newPosts && newPosts.post && newPosts.post.length > 0) {
-            posts = mergePosts(posts,newPosts);
+            data = mergePosts(data,newPosts);
             offset = offset + 3;
         } else {
             console.log("we're out of posts lol");
@@ -39,6 +38,7 @@
     const observer = new IntersectionObserver(
         (entries) => {
             if (entries[0].isIntersecting) {
+                //add in a loading animation here
                 loadMore();
               }
             },
@@ -57,11 +57,11 @@
 
 
 <main>
-    <div class= "flex-row p-0.5 space-y-6">
-        {#if posts && posts.post}
-        {#each posts.post as post}
+    <div>
+        {#if data && data.post}
+        {#each data.post as post}
         <ul>
-            <li class = "flex justify-center items-center p-10 mx-auto">{post.name}</li>
+            <li>{post.name}</li>
             {post.body}
         </ul>
         {/each}

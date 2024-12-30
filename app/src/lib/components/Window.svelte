@@ -1,6 +1,5 @@
 <script>
     import { closeWindow } from '$lib/stores/windowStore.js'
-	import TerminalOverlay from './TerminalOverlay.svelte';
     export let win;
 
     let Content;
@@ -13,7 +12,8 @@
     }
 
 </script>
-
+<!-- this component will contain all of the gui logic. front end styling will be derived from /windows, route content
+ will be passed along from the windowmanager -->
 <div class="window" style="top: {win.top}; left: {win.left}">
     <header>
         <h2>{win.title}</h2>
