@@ -16,8 +16,12 @@
  will be passed along from the windowmanager -->
 <div class="window" style="top: {win.top}; left: {win.left}">
     <header>
-        <h2>{win.title}</h2>
-        <button class ='hover:bg-brown' on:click={closeWindow(win.id)}>X</button>
+        <div class ="flex p-4 justify-end ">
+            <button class ="hover:bg-yellow outline" on:click={closeWindow(win.id)}>X</button>
+        </div>
+        <div class="outline outline-white">
+            <h2 class="flex justify-center">{win.title}</h2>
+        </div>  
     </header>
     <main>
         {#if Content}

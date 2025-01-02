@@ -30,7 +30,7 @@
 
 <!-- Final footer -->
 <footer class = "p-4">
-    <div class="container mx-auto text-center">
+    <div class="container mx-auto text-center ">
         <p>© 2000 This guy stinks</p>
     </div>
 </footer>

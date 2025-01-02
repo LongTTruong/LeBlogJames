@@ -9,6 +9,7 @@
 
   const totalLines = 10;
   
+  //might wanna export this function globally
   function throttle(fn, limit) {
       let lastFunc;
       let lastRan;
@@ -29,6 +30,7 @@
       
   }
 
+  //might wanna rename to be more specific to this component
   function update() {
     const lineOpacity = Math.random() * 0.02 + 0.01; // Controlled random opacity for a subtle effect
       // Update properties for the current scanline
